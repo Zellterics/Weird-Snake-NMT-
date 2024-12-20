@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Weird Snake(NMT)", "Weird Snake(NMT)\Weird Snake(NMT).vcxproj", "{690A3A52-4273-4CF6-9331-2162C9AAE64D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Debug|x64.ActiveCfg = Debug|x64
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Debug|x64.Build.0 = Debug|x64
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Debug|x86.ActiveCfg = Debug|Win32
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Debug|x86.Build.0 = Debug|Win32
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Release|x64.ActiveCfg = Release|x64
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Release|x64.Build.0 = Release|x64
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Release|x86.ActiveCfg = Release|Win32
+		{690A3A52-4273-4CF6-9331-2162C9AAE64D}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6027C280-DB59-42FC-A9F3-86B247EE71D3}
+	EndGlobalSection
+EndGlobal
