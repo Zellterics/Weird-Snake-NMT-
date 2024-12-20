@@ -74,7 +74,7 @@ public:
 			
 		}
 
-		if (head.first <= 0 || head.second <= 0 || head.first >= 23 || head.second >= 23) {
+		if (head.first <= 0 || head.second <= 0 || head.first >= 24 || head.second >= 24) {
 			gameOver = true;
 		}
 		for (std::pair<int, int> piece : body) {
