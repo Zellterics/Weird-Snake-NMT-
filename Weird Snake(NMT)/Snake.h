@@ -5,7 +5,7 @@
 class Snake
 {
 public:
-	Snake(std::pair<int, int> startPos, void (Display)(std::vector<int> line), int(rand)(int min, int max)) {
+	Snake(std::pair<int, int> startPos, void (Display)(std::vector<std::vector<int>> map), int(rand)(int min, int max)) {
 
 		if (startPos.second < 1) {startPos.second = 2;}
 		if (startPos.second >= 25) { startPos.second = 24; }
@@ -86,38 +86,87 @@ public:
 		if (head == food) {
 			body.push_back(lastPos);
 			food = { rand(1, 23), rand(1, 23) };
+			bool foodOverBody = false;
+			for (std::pair<int, int> piece : body) {
+				if (food == piece) {
+					foodOverBody = true;
+				}
+			}
+			if (!foodOverBody) {
+				return gameOver;
+			}
+
+			int maxX = std::max_element(body.begin(), body.end(), [](const std::pair<int, int>& x, const std::pair<int, int>& y) {
+				return x.first < y.first;
+				})->first;
+			if (maxX < 23) {
+				food = { rand(maxX, 23), rand(1,23) };
+				return gameOver;
+			}
+			int minX = std::min_element(body.begin(), body.end(), [](const std::pair<int, int>& x, const std::pair<int, int>& y) {
+				return x.first < y.first;
+				})->first;
+			if (minX > 1) {
+				food = { rand(1, minX), rand(1,23) };
+				return gameOver;
+			}
+			int maxY = std::max_element(body.begin(), body.end(), [](const std::pair<int, int>& x, const std::pair<int, int>& y) {
+				return x.first < y.first;
+				})->first;
+			if (maxY > 1) {
+				food = { rand(maxY, 23), rand(1,23) };
+				return gameOver;
+			}
+			int minY = std::min_element(body.begin(), body.end(), [](const std::pair<int, int>& x, const std::pair<int, int>& y) {
+				return x.first < y.first;
+				})->first;
+			if (minY > 1) {
+				food = { rand(1, minY), rand(1,23) };
+				return gameOver;
+			}
+			do {
+				food = { rand(1, 23), rand(1, 23) };
+				bool foodOverBody = false;
+				for (std::pair<int, int> piece : body) {
+					if (food == piece) {
+						foodOverBody = true;
+					}
+				}
+				if (!foodOverBody) {
+					return gameOver;
+				}
+			} while (foodOverBody);
 		}
 		return gameOver;
-
 
 
 	}
 
 	void Draw() {
-		std::cout << "\033[H";
+		std::vector<std::vector<int>> map;
+		map.resize(25, std::vector<int>(25, 0));
 		for (int y = 0; y < 25; y++) {
-			std::vector<int> x_info;
-			x_info.resize(25);
-			if (head.second == y) {
-				x_info[head.first] = 1;
-			}
-			for (std::pair<int, int> piece : body) {
-				if (piece.second == y) {
-					x_info[piece.first] = 2;
+			for (int x = 0; x < 25; x++) {
+				if (head.second == y && head.first == x) {
+					map[y][x] = 1;
+				}
+
+				for (std::pair<int, int> piece : body) {
+					if (piece.second == y && piece.first == x) {
+						map[y][x] = 2;
+					}
+				}
+
+				if (food.second == y && food.first == x) {
+					map[y][x] = 3;
+				}
+
+				if (x == 0 || x == 24 || y == 0 || y == 24) {
+					map[y][x] = 4;
 				}
 			}
-			if (food.second == y) {
-				x_info[food.first] = 3;
-			}
-			x_info[0] = 4;
-			x_info[24] = 4;
-			if (y == 0 || y  == 24) {
-				for (int i = 0; i < 25; i++) {
-					x_info[i] = 4;
-				}
-			}
-			Display(x_info);
 		}
+		Display(map);
 	}
 
 	enum Directions {
@@ -130,6 +179,6 @@ public:
 	std::pair<int, int> food;
 private:
 	std::vector<std::pair<int, int>> body;
-	void (*Display)(std::vector<int> line);
+	void (*Display)(std::vector<std::vector<int>> line);
 	int (*rand)(int min, int max);
 };

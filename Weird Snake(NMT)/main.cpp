@@ -7,7 +7,7 @@
 
 
 int main() {
-	Snake snake({ 20, 19 }, dsp::DrawLine, hm::randomGenerator);
+	Snake snake({ 20, 19 }, dsp::DrawLine, hm::RandomGenerator);
 	bool gameOver = false;
 	while (true) {
 		gameOver = snake.Update(dsp::InputManager);

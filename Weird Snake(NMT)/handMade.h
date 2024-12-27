@@ -15,8 +15,8 @@ namespace hm {
 		return content;
 	}
 
-	template <typename T>//for enum use : static_cast<enumName>(hm::randomNumber<enumType>(min, max));
-	std::enable_if_t<std::is_floating_point_v<T>, T> randomGenerator(T min, T max) {
+	template <typename T>//for enum use : static_cast<enumName>(hm::RandomNumber<enumType>(min, max));
+	std::enable_if_t<std::is_floating_point_v<T>, T> RandomGenerator(T min, T max) {
 		if (min > max)
 			std::swap(min, max);
 		std::random_device rd;
@@ -25,8 +25,8 @@ namespace hm {
 		return dist(gen);
 	}
 
-	template <typename T>//for enum use : static_cast<enumName>(hm::randomNumber<enumType>(min, max));
-	std::enable_if_t<std::is_integral_v<T>, T> randomGenerator(T min, T max) {
+	template <typename T>//for enum use : static_cast<enumName>(hm::RandomNumber<enumType>(min, max));
+	std::enable_if_t<std::is_integral_v<T>, T> RandomGenerator(T min, T max) {
 		if (min > max)
 			std::swap(min, max);
 		std::random_device rd;
